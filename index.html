@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./src/help.css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="module" src="./src/keydown.js" defer></script>
+    <script type="module" src="./src/main.ts" defer></script>
+    <script src="./src/colortab.ts" defer></script>
+    <link rel="stylesheet" href="./src/contextmenu.css">
+</head>
+<body>
+    <button style="position:absolute;
+    top:0;
+    right:0;" onclick="location='./test.html'">Testing gui page</button>
+    <div id="context-menu">
+        <div class="item">
+          <label for="input">Load file</label>
+          
+          <input style="display: none;" type="file" id="input" name="json" accept=".json" multiple />
+    
+        </div>
+        <div class="item" onclick="ColorTab()" style="cursor:pointer">Color</div>
+        
+        <!-- <div class="item">Option 3</div>
+        <div class="item">Option 4</div>
+        <div class="item">Option 5</div> -->
+      </div>
+  
+      <script src="./src/tab.js">
+
+      </script>
+    </body>
+</body>
+</html>
