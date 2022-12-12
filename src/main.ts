@@ -1,27 +1,29 @@
 
 let boxes: string[] = [] 
+let actual_boxes: string[] = []
 let intervalId = 0
-function main(jsond: JSON){
+function main(jsond: any){
     //console.log(jsond)
         
        
     document.body.style.background = ''
     for (var key in jsond) {
         if (jsond.hasOwnProperty(key)) {
-            console.log(key + " -> " + jsond[key]);
-            
-            crbox(jsond[key], true)
+            console.log(key + " -> " + jsond[key].actual);
+            actual_boxes.push(jsond[key].actual)
+            crbox(key, true)
+            console.log(key)
             
         
         }
     }
-
+    console.log(actual_boxes)
 
     intervalId = window.setInterval(function(){
-    
-        for (let i = 0; i < boxes.length; i++) {
-            //console.log(boxes)
-            let see: any = is_key_down(boxes[i])
+        // console.log(is_key_down("BackSlash"))
+        for (let i = 0; i < actual_boxes.length; i++) {
+            // console.log(boxes)
+            let see: any = is_key_down(actual_boxes[i].toLowerCase())
             const boesx: any = document.getElementById(boxes[i])
             if(see == true){
             
@@ -31,7 +33,7 @@ function main(jsond: JSON){
             }   
             if(localStorage.getItem("color") != null){
                 if(localStorage.getItem("color") == "green")localStorage.setItem('color', "#00b140")
-                
+                // @ts-ignore
                 document.body.style.background = localStorage.getItem("color");
             }
         }
@@ -72,6 +74,7 @@ function readFile(file: any) {
             let crboxl: any = document.getElementById(boxes[0])
             crboxl.remove()
             boxes.shift()
+            actual_boxes = []
             main(result)
             
             
@@ -95,26 +98,41 @@ function handleFiles() {
 import { listen } from '@tauri-apps/api/event'
 
 let currently_pressed:string[] = []
+// @ts-ignore
 const unlisten = await listen('key-pressed', (event: any) => {
-  //console.log(event.payload)
+  event.payload = event.payload.toLowerCase()
   //console.log(event.payload.split(""))
   
-  if(event.payload.split("")[0] == "K" && currently_pressed.includes(event.payload.split("")[3]) == false){
+  if(event.payload.split("")[0] == "k" && currently_pressed.includes(event.payload.split("")[3]) == false){
     currently_pressed.push(event.payload.split("")[3])
     console.log(currently_pressed)
+  }else if(event.payload.split("")[0] == "n" && currently_pressed.includes(event.payload.split("")[3]) == false){
+    currently_pressed.push(event.payload.split("")[3])
+    console.log(currently_pressed)
+  }else if(currently_pressed.includes(event.payload) == false){
+    currently_pressed.push(event.payload)
+    console.log(currently_pressed)
+    console.log(event.payload)  
   }
 })
-
+// @ts-ignore
 const unlistens = await listen('key-released', (event: any) => {
-  
-  if(event.payload.split("")[0] == "K" && currently_pressed.includes(event.payload.split("")[3]) == true){
+    event.payload = event.payload.toLowerCase()
+  if(event.payload.split("")[0] == "k" && currently_pressed.includes(event.payload.split("")[3]) == true){
     currently_pressed = currently_pressed.filter(e => e !== event.payload.split("")[3])
     console.log(currently_pressed)
+  }else if(event.payload.split("")[0] == "n" && currently_pressed.includes(event.payload.split("")[3]) == true){
+    currently_pressed = currently_pressed.filter(e => e !== event.payload.split("")[3])
+    console.log(currently_pressed)
+  }else if(currently_pressed.includes(event.payload) == true){
+    currently_pressed = currently_pressed.filter(e => e !== event.payload)
+    console.log(currently_pressed)
+    console.log(event.payload)
   }
 })
 function is_key_down(letter: string){
-    console.log(letter)
-    if(currently_pressed.includes(letter.toUpperCase()) == true)return true;
-
+    // console.log(letter)
+    if(currently_pressed.includes(letter.toLowerCase()) == true)return true;
+    if(currently_pressed.includes(letter) == true)return true;
     return false
 }
