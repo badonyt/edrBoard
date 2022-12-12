@@ -1,8 +1,8 @@
 [package]
-name = "tauri-app"
+name = "edrboard"
 version = "0.0.0"
-description = "A Tauri App"
-authors = ["you"]
+description = "NohBoard but on linux"
+authors = ["badonyt"]
 license = ""
 repository = ""
 edition = "2021"
