@@ -99,7 +99,7 @@ import { listen } from '@tauri-apps/api/event'
 
 let currently_pressed:string[] = []
 // @ts-ignore
-const unlisten = await listen('key-pressed', (event: any) => {
+const unlisten = listen('key-pressed', (event: any) => {
   event.payload = event.payload.toLowerCase()
   //console.log(event.payload.split(""))
   
@@ -116,7 +116,7 @@ const unlisten = await listen('key-pressed', (event: any) => {
   }
 })
 // @ts-ignore
-const unlistens = await listen('key-released', (event: any) => {
+const unlistens = listen('key-released', (event: any) => {
     event.payload = event.payload.toLowerCase()
   if(event.payload.split("")[0] == "k" && currently_pressed.includes(event.payload.split("")[3]) == true){
     currently_pressed = currently_pressed.filter(e => e !== event.payload.split("")[3])
