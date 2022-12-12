@@ -1,10 +1,21 @@
 import { listen } from '@tauri-apps/api/event'
 
-// listen to the `click` event and get a function to remove the event listener
-// there's also a `once` function that subscribes to an event and automatically unsubscribes the listener on the first event
-const unlisten = await listen('click', (event: any) => {
-  // event.event is the event name (useful if you want to use a single callback fn for multiple event types)
-  // event.payload is the payload object
+let currently_pressed:string[] = []
+const unlisten = await listen('key-pressed', (event: any) => {
+  //console.log(event.payload)
+  //console.log(event.payload.split(""))
+  
+  if(event.payload.split("")[0] == "K" && currently_pressed.includes(event.payload.split("")[3]) == false){
+    currently_pressed.push(event.payload.split("")[3])
+    console.log(currently_pressed)
+  }
 })
 
+const unlistens = await listen('key-released', (event: any) => {
+  
+  if(event.payload.split("")[0] == "K" && currently_pressed.includes(event.payload.split("")[3]) == true){
+    currently_pressed = currently_pressed.filter(e => e !== event.payload.split("")[3])
+    console.log(currently_pressed)
+  }
+})
 

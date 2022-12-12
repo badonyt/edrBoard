@@ -3,36 +3,46 @@
     windows_subsystem = "windows"
 )]
 
-//Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-#[tauri::command]
-fn greet(name: &str) -> String {
-    format!("Hello, {}! You've been greeted from Rust!", name)
-}
+use once_cell::sync::OnceCell;
+use rdev::{listen, Event, EventType};
+use tauri::{AppHandle, Manager};
+
+static HANDLE: OnceCell<AppHandle> = OnceCell::new();
 
 fn main() {
-    std::thread::spawn(move || {
-        if let Err(error) = listen(callback) {
-            println!("Error: {:?}", error)
-        }
-    });
-
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![greet])
+        .setup(|app| {
+            HANDLE.set(app.handle()).unwrap();
+
+            std::thread::spawn(move || {
+                if let Err(error) = listen(callback) {
+                    println!("Error: {:?}", error);
+                }
+            });
+
+            Ok(())
+        })
+        .invoke_handler(tauri::generate_handler![])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
 
-use rdev::{listen, Event, EventType};
-
-// This will block.
-
-import { appWindow, WebviewWindow } from '@tauri-apps/api/window'
 fn callback(event: Event) {
-    println!("My callback {:?}", event);
     match event.event_type {
-        EventType::KeyPress(key) => println!("Key pressed: {:?}", key),
-        app.emit_all("event-name", Payload { message: "Tauri is awesome!".into() }).unwrap();
-        EventType::KeyRelease(key) => println!("Key released: {:?}", key),
+        EventType::KeyPress(key) => {
+            println!("Key pressed: {:?}", key);
+            if let Some(handle) = HANDLE.get() {
+                //handle.emit_all("key-pressed", event.name).unwrap();
+                handle.emit_all("key-pressed", format!("{:?}", key)).unwrap();
+            }
+        }
+        EventType::KeyRelease(key) => {
+            println!("Key released: {:?}", key);
+            if let Some(handle) = HANDLE.get() {
+                //handle.emit_all("key-released", event.name).unwrap();
+                handle.emit_all("key-released", format!("{:?}", key)).unwrap(); 
+            }
+        }
         _ => (),
     }
 }
