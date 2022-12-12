@@ -1,4 +1,4 @@
-// import {is_key_down} from './keydown.js' // @ts-ignore
+
 let boxes: string[] = [] 
 let intervalId = 0
 function main(jsond: JSON){
