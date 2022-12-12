@@ -1,5 +1,5 @@
 function StoreColor(){
-    const input_thing: any = document.getElementById('color')
+    const input_thing: any = document.getElementById('colorpicker')
     localStorage.setItem('color', input_thing.value);
 }
 // Get the input field
