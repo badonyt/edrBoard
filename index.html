@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script type="module" src="./src/main.ts" defer></script>
-    <script src="./src/colortab.ts" defer></script>
+    <script src="./src/colortab.ts" type="module" defer></script>
     <!-- <script src="./src/i_listening_test.ts" type="module"></script> -->
     <link rel="stylesheet" href="./src/contextmenu.css">
 </head>
@@ -22,14 +22,14 @@
           <input style="display: none;" type="file" id="input" name="json" accept=".json" multiple />
     
         </div>
-        <div class="item" onclick="ColorTab()" style="cursor:pointer">Color</div>
+        <div class="item" id="button_color" style="cursor:pointer">Color</div>
         
         <!-- <div class="item">Option 3</div>
         <div class="item">Option 4</div>
         <div class="item">Option 5</div> -->
       </div>
   
-      <script src="./src/tab.js">
+      <script src="./src/tab.js" type="module">
 
       </script>
     </body>

@@ -32,9 +32,11 @@ function main(jsond: any){
                 boesx.style.backgroundColor = "grey"
             }   
             if(localStorage.getItem("color") != null){
-                if(localStorage.getItem("color") == "green")localStorage.setItem('color', "#00b140")
+                if(localStorage.getItem("color") == "green")localStorage.setItem('color', "#00b140");
                 // @ts-ignore
                 document.body.style.background = localStorage.getItem("color");
+            }else{
+              localStorage.setItem('color', "#00b140")
             }
         }
 

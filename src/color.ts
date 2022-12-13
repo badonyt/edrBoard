@@ -8,3 +8,7 @@ document.addEventListener("keyup", function(event: any) {
         StoreColor();
     }
 });
+
+const elem:HTMLElement | null =document.getElementById("mainbtn")
+// @ts-ignore
+elem.onclick = function() { StoreColor(); };
