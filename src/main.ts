@@ -58,7 +58,8 @@ function crbox(name: string,add:boolean = true, x: string, y:string){
       'position: absolute;left: '+x+';top: '+y+';',
     );
     //'position: absolute;left: "+x+";top: "+y+";'
-    document.body.appendChild(div);
+    //@ts-ignore
+    document.getElementById("maindiv").appendChild(div);
     if(add == true){
         boxes.push(name)
     }
@@ -73,14 +74,12 @@ function readFile(file: any) {
         
         if (boxes.length == 0){main(result)}else{
             clearInterval(intervalId);
-            for(let i = 0; i < boxes.length + 1; i++){
-                let crboxl: any = document.getElementById(boxes[0])
-                crboxl.remove()
-                boxes.shift()
+            let divlol: any = document.getElementById('maindiv');
+
+            while(divlol.firstChild) {
+              divlol.removeChild(divlol.firstChild);
             }
-            let crboxl: any = document.getElementById(boxes[0])
-            crboxl.remove()
-            boxes.shift()
+            boxes = []
             actual_boxes = []
             main(result)
             

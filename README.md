@@ -4,7 +4,6 @@ This is a copy of [nohboard](https://github.com/ThoNohT/NohBoard). But available
 ## Missing
 * Fixing issues(if there is)
 * Keys not working when app is focused(not in my control)
-* Putting another json file in, in the same session. Breaks it.
 
 
 ## Contributors
