@@ -7,8 +7,8 @@
     "withGlobalTauri": true
   },
   "package": {
-    "productName": "tauri-app",
-    "version": "0.0.0"
+    "productName": "edrboard",
+    "version": "1.0.0"
   },
   "tauri": {
     "allowlist": {
@@ -58,7 +58,7 @@
         "fullscreen": false,
         "height": 600,
         "resizable": true,
-        "title": "tauri-app",
+        "title": "edrboard",
         "width": 800,
         "alwaysOnTop":false
       }
