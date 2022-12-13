@@ -11,7 +11,7 @@ function main(jsond: any){
         if (jsond.hasOwnProperty(key)) {
             console.log(key + " -> " + jsond[key].actual);
             actual_boxes.push(jsond[key].actual)
-            crbox(key, true)
+            crbox(key, true, jsond[key].x, jsond[key].y)
             console.log(key)
             
         
@@ -46,11 +46,16 @@ function main(jsond: any){
 
 
 
-function crbox(name: string,add:boolean = true){
+function crbox(name: string,add:boolean = true, x: string, y:string){
     const div = document.createElement("div");
     div.className = "box";
     div.id = name
     div.innerHTML = "<p style='text-align: center'>" + name + "</p>";
+    div.setAttribute(
+      'style',
+      'position: absolute;left: '+x+';top: '+y+';',
+    );
+    //'position: absolute;left: "+x+";top: "+y+";'
     document.body.appendChild(div);
     if(add == true){
         boxes.push(name)
