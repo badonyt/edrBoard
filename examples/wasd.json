@@ -19,6 +19,16 @@
         "actual": "a",
         "x": "50px",
         "y": "150px"
+    },
+    "left": {
+        "actual": "mouseleft",
+        "x": "400px",
+        "y": "150px"
+    },
+    "right": {
+        "actual": "mouseright",
+        "x": "500px",
+        "y": "150px"
     }
 
 }

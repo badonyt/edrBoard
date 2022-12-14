@@ -28,7 +28,22 @@ fn main() {
 }
 
 fn callback(event: Event) {
+    // dbg!(&event);
     match event.event_type {
+        EventType::ButtonPress(button) => {
+            if let Some(handle) = HANDLE.get() {
+                //handle.emit_all("key-pressed", event.name).unwrap();
+                handle.emit_all("button-pressed", format!("{:?}", button)).unwrap();
+            }
+        
+        }
+        EventType::ButtonRelease(button) => {
+            println!("Key released: {:?}", button);
+            if let Some(handle) = HANDLE.get() {
+                //handle.emit_all("key-released", event.name).unwrap();
+                handle.emit_all("button-released", format!("{:?}", button)).unwrap(); 
+            }
+        }
         EventType::KeyPress(key) => {
             println!("Key pressed: {:?}", key);
             if let Some(handle) = HANDLE.get() {

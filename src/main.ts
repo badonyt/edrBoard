@@ -136,6 +136,24 @@ const unlistens = listen('key-released', (event: any) => {
     console.log(event.payload)
   }
 })
+// @ts-ignore
+const unlisten_button_pressed = listen('button-pressed', (event: any) => {
+  event.payload = "mouse"+event.payload.toLowerCase()
+  console.log(event.payload)
+  currently_pressed.push(event.payload)
+  
+})
+// @ts-ignore
+const unlisten_button_unpressed = listen('button-released', (event: any) => {
+  event.payload = "mouse"+event.payload.toLowerCase()
+  if(currently_pressed.includes(event.payload) == true){
+    currently_pressed = currently_pressed.filter(e => e !== event.payload)
+  }
+
+
+  console.log(event.payload)
+
+})
 function is_key_down(letter: string){
     // console.log(letter)
     if(currently_pressed.includes(letter.toLowerCase()) == true)return true;
