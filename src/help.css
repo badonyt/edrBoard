@@ -4,3 +4,8 @@
     border: 1px solid black;
     background-color: grey;
 } 
+
+body {
+    overflow-y: hidden; /* Hide vertical scrollbar */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+  }

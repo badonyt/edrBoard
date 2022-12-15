@@ -29,6 +29,13 @@
         "actual": "mouseright",
         "x": "500px",
         "y": "150px"
+    },
+    "space": {
+        "actual": "space",
+        "x": "200px",
+        "y": "350px",
+        "width": "250px",
+        "height": "100px"
     }
 
 }

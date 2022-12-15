@@ -11,8 +11,19 @@ function main(jsond: any){
         if (jsond.hasOwnProperty(key)) {
             console.log(key + " -> " + jsond[key].actual);
             actual_boxes.push(jsond[key].actual)
-            crbox(key, true, jsond[key].x, jsond[key].y)
+            
             console.log(key)
+            if(jsond[key].hasOwnProperty('width') && jsond[key].hasOwnProperty('height')){
+              console.log("w & h")
+              crbox(key, true, jsond[key].x, jsond[key].y, jsond[key].width, jsond[key].height)
+            }else if(jsond[key].hasOwnProperty('width')){
+              console.log("w")
+              crbox(key, true, jsond[key].x, jsond[key].y, jsond[key].width)
+            }else if(jsond[key].hasOwnProperty('height')){
+              crbox(key, true, jsond[key].x, jsond[key].y, "100px", jsond[key].height)
+            }else{
+              crbox(key, true, jsond[key].x, jsond[key].y)
+            }
             
         
         }
@@ -48,14 +59,14 @@ function main(jsond: any){
 
 
 
-function crbox(name: string,add:boolean = true, x: string, y:string){
+function crbox(name: string,add:boolean = true, x: string, y:string, width:string="100px", height:string="100px"){
     const div = document.createElement("div");
     div.className = "box";
     div.id = name
     div.innerHTML = "<p style='text-align: center'>" + name + "</p>";
     div.setAttribute(
       'style',
-      'position: absolute;left: '+x+';top: '+y+';',
+      'position: absolute;left: '+x+';top: '+y+';width: '+width+';height: '+height+';',
     );
     //'position: absolute;left: "+x+";top: "+y+";'
     //@ts-ignore
