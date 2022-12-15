@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typescript</title>
+    <link rel="stylesheet" href="../main.css">
+</head>
+
+<body>
+    <nav>
+        <h2>EdrBoard</h2>
+        <ul>
+            <li><a href="./../index.html">Home</a></li>
+            <li><a href="./../why.html">Why?</a></li>
+            <li><a href="./../contribute.html">Contribute</a></li>
+            <li><a href="./../docs.html">Docs</a></li>
+        </ul>
+    </nav>
+    <div style="text-align: center;">
+        <div>
+            <h2>Generally</h2>
+            <p>The typescript works like this.<br>
+                1. Gets json file and removes "boxes if nessary"<br>
+                2. Parses json file and gets information, and creates new boxes<br>
+                3. Every 15 ms sees if any keys are pressing with the Is_Key_Down function.
+            </p>
+        </div>
+        <div>
+            <h3>Is_Key_Down</h3>
+            <p style="font-size: 15px;">Every time that receives an event from the RUST file. It stores that the key is
+                pressed in an array.<br>And when it receives a signal it removes from the array.<br>Which then in the
+                key_is_down function sees if down, from searching in the array.</p>
+        </div>
+    </div>
+</body>
+
+</html>
