@@ -2,10 +2,11 @@
 let boxes: string[] = [] 
 let actual_boxes: string[] = []
 let intervalId = 0
+// main, is composed of two parts
 function main(jsond: any){
-    //console.log(jsond)
+
         
-       
+      //reads json, creates box. And if needed adds to array 
     document.body.style.background = ''
     for (var key in jsond) {
         if (jsond.hasOwnProperty(key)) {
@@ -29,11 +30,12 @@ function main(jsond: any){
         }
     }
     console.log(actual_boxes)
-
+    // sees if key is presssed down. If so puts box to different color.
+    //also manages backround
     intervalId = window.setInterval(function(){
-        // console.log(is_key_down("BackSlash"))
+        
         for (let i = 0; i < actual_boxes.length; i++) {
-            // console.log(boxes)
+            
             let see: any = is_key_down(actual_boxes[i].toLowerCase())
             const boesx: any = document.getElementById(boxes[i])
             if(see == true){
@@ -58,7 +60,7 @@ function main(jsond: any){
 }
 
 
-
+// creates box. Based on inputs
 function crbox(name: string,add:boolean = true, x: string, y:string, width:string="100px", height:string="100px"){
     const div = document.createElement("div");
     div.className = "box";
@@ -76,11 +78,11 @@ function crbox(name: string,add:boolean = true, x: string, y:string, width:strin
     }
     
 }
-
+// Sees if theres any boxes if not just call main function. If theres boxes on screen deletes them and then calls main
 function readFile(file: any) {
-    const reader = new FileReader(); // create the waiter
+    const reader = new FileReader(); 
     let result;
-    reader.onload = (evt: any) => { // when the waiter comes back with my food `evt`, this is what I want to do with it
+    reader.onload = (evt: any) => { 
         result = JSON.parse(evt.target.result);
         
         if (boxes.length == 0){main(result)}else{
@@ -100,10 +102,9 @@ function readFile(file: any) {
         
     };
 
-    reader.readAsText(file); // You order your food
-    console.log(result) // you immediately try to access your food, it is not ready yet
+    reader.readAsText(file); 
 }
-
+// When user inputs file, calls readfile function
 const inputElement: any = document.getElementById("input");
 inputElement.addEventListener("change", handleFiles, false);
 function handleFiles() {
@@ -113,7 +114,7 @@ function handleFiles() {
 
 
 import { listen } from '@tauri-apps/api/event'
-
+//THE NEXT THING IS JUST WHEN GETS SIGNAL FROM RUST APPENDS TO THIS ARRAY
 let currently_pressed:string[] = []
 // @ts-ignore
 const unlisten = listen('key-pressed', (event: any) => {
@@ -165,6 +166,7 @@ const unlisten_button_unpressed = listen('button-released', (event: any) => {
   console.log(event.payload)
 
 })
+// function to see if key is down. From the array
 function is_key_down(letter: string){
     // console.log(letter)
     if(currently_pressed.includes(letter.toLowerCase()) == true)return true;
