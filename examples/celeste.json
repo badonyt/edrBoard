@@ -1,0 +1,56 @@
+{
+    "comment": "(MODIFIED CODE)THANKS Tiyenti FOR THE CODE https://github.com/Tiyenti/kbdisplay/blob/master/layouts/celeste.json",
+    "▲":{
+        "keycode": 111,
+        "x": "107px",
+        "y": "19px",
+        "width": "43px",
+        "height": "43px",
+        "actual": "uparrow"
+    },
+    "◀":{
+        "x": "63px",
+        "y": "63px",
+        "width": "43px",
+        "height": "43px",
+        "actual": "leftarrow"
+    },
+    "▼":{
+        "keycode": 116,
+        "x": "107px",
+        "y": "63px",
+        "width": "43px",
+        "height": "43px",
+        "actual": "downarrow"
+    },
+    "▶":{
+       
+        "x": "151px",
+        "y": "63px",
+        "width": "43px",
+        "height": "43px",
+        "actual": "rightarrow"
+    },
+    "z":{
+
+        "x": "7px",
+        "y": "9px",
+        "width": "43px",
+        "height": "43px",
+        "actual": "Z"
+    },
+    "x":{
+        "x": "51px",
+        "y": "9px",
+        "width": "43px",
+        "height": "43px",
+        "actual": "x"
+    },
+    "c":{
+        "x": "7px",
+        "y": "53px",
+        "width": "43px",
+        "height": "43px",
+        "actual": "C"
+    }
+}

@@ -2,6 +2,8 @@
 let boxes: string[] = []
 let actual_boxes: string[] = []
 let intervalId = 0
+//just for debug 
+const current_pressed: string[] = []
 // main, is composed of two parts
 function main(jsond: any) {
 
@@ -9,7 +11,8 @@ function main(jsond: any) {
   //reads json, creates box. And if needed adds to array 
   document.body.style.background = ''
   for (var key in jsond) {
-    if (jsond.hasOwnProperty(key)) {
+    //allows comments
+    if (jsond.hasOwnProperty(key) && key != "comment") {
       console.log(key + " -> " + jsond[key].actual);
       actual_boxes.push(jsond[key].actual.toLowerCase())
 
@@ -29,7 +32,7 @@ function main(jsond: any) {
 
     }
   }
-  // every 130ms sees if backround needs to changes
+  // every 130ms sees if backround needs to changes && debug
   intervalId = window.setInterval(function () {
 
     if (localStorage.getItem("color") != null) {
@@ -40,6 +43,10 @@ function main(jsond: any) {
       localStorage.setItem('color', "#00b140")
     }
     // }
+    // # just for debug
+    if(document.getElementById("debug") != null){
+      //@ts-ignore
+      document.getElementById("debug").innerText = `Debug:\n Boxes: [${boxes}]\n Actual_boxes:${actual_boxes}\nPressed_rn:${current_pressed}`;}
 
 
   }, 130);
@@ -120,6 +127,8 @@ const unlisten = listen('key-pressed', (event: any) => {
   }
 
   light_up(event.payload)
+  // # DEBUG
+  current_pressed.push(event.payload)
 })
 // @ts-ignore
 const unlistens = listen('key-released', (event: any) => {
@@ -134,16 +143,25 @@ const unlistens = listen('key-released', (event: any) => {
 
   } 
   light_down(event.payload)
+  // # DEBUG
+  //if (current_pressed.indexOf(event.payload) !== -1) {current_presseddebug.splice(event.payload, 1);}
+  for (let i = current_pressed.length - 1; i >= 0; i--) {if (current_pressed[i] === event.payload) {current_pressed.splice(i, 1);}}
 })
 // @ts-ignore
 const unlisten_button_pressed = listen('button-pressed', (event: any) => {
   event.payload = "mouse" + event.payload.toLowerCase()
   light_up(event.payload)
+  // # DEBUG
+  current_pressed.push(event.payload)
 })
 // @ts-ignore
 const unlisten_button_unpressed = listen('button-released', (event: any) => {
   event.payload = "mouse" + event.payload.toLowerCase()
   light_down(event.payload)
+  // # DEBUG
+  //if (current_pressed.indexOf(event.payload) !== -1) {current_pressed.splice(event.payload, 1);}
+  for (let i = current_pressed.length - 1; i >= 0; i--) {if (current_pressed[i] === event.payload) {current_pressed.splice(i, 1);}}
+  
 
 })
 // lights up box

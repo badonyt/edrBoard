@@ -1,6 +1,6 @@
 [package]
 name = "edrboard"
-version = "0.0.0"
+version = "1.2.0"
 description = "NohBoard but on linux"
 authors = ["badonyt"]
 license = ""
