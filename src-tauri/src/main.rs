@@ -23,6 +23,7 @@ fn main() {
             Ok(())
         })
         .invoke_handler(tauri::generate_handler![])
+        .device_event_filter(tauri::DeviceEventFilter::Always)
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
