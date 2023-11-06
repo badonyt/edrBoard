@@ -4,8 +4,7 @@ Download is available [here](https://www.edrboard.tk)
 
 
 ## Missing
-* Fixing issues(if there is)
-* Keys not working when app is focused(not in my control)
+* Add mouse support like in nohboard
 
 
 ## Contributors
